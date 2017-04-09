@@ -26,12 +26,12 @@ public class Main {
         private boolean recursive = true;
 
         private Options() {
-            if(System.getProperty("path") == null){
+            if (System.getProperty("path") == null) {
                 this.parentPath = System.getProperty("user.dir");
-            }else {
+            } else {
                 this.parentPath = System.getProperty("path");
             }
-            System.out.println(this.parentPath);
+            System.out.println("Path to search: " + this.parentPath);
         }
     }
 
@@ -48,7 +48,7 @@ public class Main {
 
     public static void main(final String[] args) throws IOException {
         final Options options = new Options();
-        final Collection<File> files = FileUtils.listFiles(new File(options.parentPath), new String[]{"go"}, true).stream().filter((File file) -> !file.getName().contains("_test")).collect(Collectors.toList());
+        final Collection<File> files = FileUtils.listFiles(new File(options.parentPath), new String[]{"go"}, true);
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("Results");
         final Font font = workbook.createFont();
@@ -117,12 +117,12 @@ public class Main {
                 e.printStackTrace();
             }
         }
-        for (int i = 0; i <=sheet.getLastRowNum(); i++) {
+        for (int i = 0; i <= sheet.getLastRowNum(); i++) {
             sheet.autoSizeColumn(i);
         }
-        FileOutputStream sheetFile = new FileOutputStream(new File("results.xslx"));
+        FileOutputStream sheetFile = new FileOutputStream(new File("References.xslx"));
         workbook.write(sheetFile);
         workbook.close();
-        System.out.println("results.xslx generated successfully");
+        System.out.println("References.xslx generated successfully");
     }
 }
