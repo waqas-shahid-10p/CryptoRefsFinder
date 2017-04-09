@@ -10,3 +10,5 @@ It needs Java8 to compile and run.
 `java -jar -Dpath=<path of the go project>  crypto-1.0-SNAPSHOT-jar-with-dependencies.jar`
 
 > If path variable is not provided, it starts searching within the current directory
+
+It generates an excel sheet with the name *References.xslx* which contains all the matches.
